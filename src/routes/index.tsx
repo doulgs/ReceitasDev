@@ -2,7 +2,7 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Home } from "../pages/Home";
+import { StackRoutes } from "./stackRoutes";
 import { Favorites } from "../pages/Favorites";
 
 const Tab = createBottomTabNavigator();
@@ -18,8 +18,8 @@ export function Routes() {
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeTab"
+        component={StackRoutes}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <AntDesign

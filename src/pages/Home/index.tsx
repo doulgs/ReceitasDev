@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,14 +7,30 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Logo } from "../../components/Logo";
 
+import api from "../../services/api";
+import { FoodsProps } from "../../interfaces/IntFoods";
+import { FoodList } from "../../components/FoodList";
+
 const statusBarHeight = StatusBar.currentHeight;
 
 export function Home() {
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [foods, setFoods] = useState<FoodsProps[]>([]);
+
+  useEffect(() => {
+    async function fetchApi() {
+      const response = await api.get("/foods");
+      setFoods(response.data);
+    }
+
+    fetchApi();
+  }, []);
+
   function handleSearch() {
     console.log("handleSearch");
   }
@@ -37,6 +53,13 @@ export function Home() {
           <AntDesign name="search1" size={24} color="#4cbe6c" />
         </TouchableOpacity>
       </View>
+
+      <FlatList
+        data={foods}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => <FoodList data={item} />}
+        showsVerticalScrollIndicator={false}
+      />
     </SafeAreaView>
   );
 }
