@@ -28,7 +28,11 @@ export function FoodList({ data }: Props) {
         </Text>
       </View>
       <LinearGradient
-        colors={["transparent", "rgba(0,0,0,0.70)", "rgba(0,0,0,0.95)"]}
+        colors={[
+          "transparent",
+          "rgba(202, 15, 15, 0.343)",
+          "rgba(153, 13, 13, 0.725)",
+        ]}
         style={styles.gradient}
       />
     </TouchableOpacity>
