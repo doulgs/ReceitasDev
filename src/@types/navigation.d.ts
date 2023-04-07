@@ -7,7 +7,9 @@ export declare global {
       Detail: {
         data: FoodsProps;
       };
-      Search: undefined;
+      Search: {
+        name: string;
+      };
     }
   }
 }
